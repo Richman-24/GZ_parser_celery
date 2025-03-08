@@ -1,21 +1,34 @@
 # script.py
-import time
 from tasks import parse_page, parse_xml
 
+def decorate_print(func):
+    from art import tprint
+
+    def wrapper(*args, **kwargs):
+        print("### Начинаем парсинг ###")
+        result = func()
+        print("### Данные получены ###")
+        tprint("ALL  DONE")
+        return result
+    return wrapper
+
+@decorate_print
 def main():
-    # Ссылки на страницы
     page_range = 2
     main_url = "https://zakupki.gov.ru/epz/order/extendedsearch/results.html?fz44=on&pageNumber="
 
-    # Парсим первую страницу и получаем список ссылок
+    results = []
+    counter = 1
     for page in range(1, page_range + 1):
         url = f"{main_url}{page}"
         res = parse_page.delay(url).get()
 
-        # Асинхронно парсим каждую ссылку из res
         for link in res:
-            results = parse_xml.delay(link).get()
-            print(f"Results from {link}: {results}")
-        time.sleep(10)
+            results.append((link, parse_xml.delay(link)))
+        
+    for res in results:
+        print(f"[{counter}] https://zakupki.gov.ru{res[0]}: {res[1].get()}")
+        counter += 1
+
 if __name__ == "__main__":
     main()

@@ -6,10 +6,12 @@ import xmltodict
 from bs4 import BeautifulSoup
 from celery import Celery, shared_task
 
-app = Celery('parser', broker='redis://localhost:6379/0')
+app = Celery(
+    'parser',
+    broker='redis://localhost:6379/0',
+    backend='redis://localhost:6379/0')
 
 app.conf.update(
-    result_backend='redis://localhost:6379/0',
     task_serializer='json',
     accept_content=['json'],
     result_serializer='json',
