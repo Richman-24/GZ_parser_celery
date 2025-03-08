@@ -8,7 +8,7 @@
 
 В качестве очереди использует redis (запускаем в докер контейнере)
 
-## стэк: 
+## Cтэк: 
 Python 3, Celery, Redis, Requests, BeautifulSoup4, xmltodict, art, Docker
 
 
@@ -20,7 +20,7 @@ Python 3, Celery, Redis, Requests, BeautifulSoup4, xmltodict, art, Docker
 ```bash
 docker run --rm -d --name redis -p 6379:6379 redis
 ```
-4. Запустит воркера celery:
+4. Запустить воркера celery:
 
 ```bash
 celery -A tasks worker --loglevel=info
