@@ -1,4 +1,5 @@
 # script.py
+import sys
 from tasks import parse_page, parse_xml
 
 def decorate_print(func):
@@ -14,7 +15,17 @@ def decorate_print(func):
 
 @decorate_print
 def main():
-    page_range = 2
+    ########################################################################
+    # Модификация приема количества страниц для парсинга через консоль
+    # при запуске НЕ через терминал - закомментировать.
+    pages = sys.argv[1]
+
+    if pages:
+        page_range = int(pages)
+    else:
+        page_range = 2
+    ########################################################################
+
     main_url = "https://zakupki.gov.ru/epz/order/extendedsearch/results.html?fz44=on&pageNumber="
 
     results = []
