@@ -25,7 +25,8 @@ def main():
     else:
         page_range = 2
     ########################################################################
-
+    
+    #page_range = 2
     main_url = "https://zakupki.gov.ru/epz/order/extendedsearch/results.html?fz44=on&pageNumber="
 
     results = []
