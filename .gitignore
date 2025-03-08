@@ -1,4 +1,6 @@
-.venv/
+.storage/
 .vscode/
+
+venv/
 
 __pycache__/
