@@ -18,7 +18,7 @@ Python 3, Celery, Redis, Requests, BeautifulSoup4, xmltodict, art, Docker
 3. запустить redis в контейнере:
 
 ```bash
-sudo docker run --rm -d --name redis -p 6379:6379 redis
+docker run --rm -d --name redis -p 6379:6379 redis
 ```
 4. Запустит воркера celery:
 
@@ -34,7 +34,7 @@ python3 script.py
 ## Примечание: 
 При запуске через терминал можно указать дополнительным аргументов число страниц для парсинга. (по-умолчанию = 2)
 ```bash 
-    python3 script.py 4
+python3 script.py 4
 ```
 
 ## Автор проекта
